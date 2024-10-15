@@ -1,0 +1,17 @@
+services:
+  python-ssh:
+    build: .
+    container_name: python-ssh
+    networks:
+      python-ssh-net:
+        ipv4_address: 172.28.1.2
+    ports:
+      - "2222:22"
+    tty: true
+
+networks:
+  python-ssh-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
