@@ -3,7 +3,7 @@ services:
     build: .
     container_name: python-ssh
     volumes:
-      - ./S3App:/S3App
+      - ./app:/app
       - ./requirements.txt:/requirements.txt
     networks:
       python-ssh-net:
