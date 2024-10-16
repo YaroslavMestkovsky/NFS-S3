@@ -2,11 +2,15 @@ services:
   python-ssh:
     build: .
     container_name: python-ssh
+    volumes:
+      - ./S3App:/S3App
+      - ./requirements.txt:/requirements.txt
     networks:
       python-ssh-net:
         ipv4_address: 172.28.1.2
     ports:
       - "2222:22"
+      - "8000:8000"
     tty: true
 
 networks:
