@@ -20,6 +20,3 @@ RUN pip3 install --upgrade pip  \
 
 # SSH порт
 EXPOSE 22
-
-# Запуск SSH при старте контейнера
-CMD ["/usr/sbin/sshd", "-D"]

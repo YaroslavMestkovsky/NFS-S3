@@ -5,6 +5,7 @@ services:
     volumes:
       - ./app:/app
       - ./requirements.txt:/requirements.txt
+      - ./start.sh:/start.sh
     networks:
       python-ssh-net:
         ipv4_address: 172.28.1.2
@@ -12,6 +13,7 @@ services:
       - "2222:22"
       - "8000:8000"
     tty: true
+    command: "/bin/sh start.sh"
 
 networks:
   python-ssh-net:
