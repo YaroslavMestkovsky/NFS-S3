@@ -1,0 +1,21 @@
+<h1>Documents</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>File Path</th>
+        <th>Action</th>
+    </tr>
+    {% for document in documents %}
+    <tr>
+        <td>{{ document.title }}</td>
+        <td>{{ document.file.url }}</td>
+        <td>
+            <form action="{% url 'delete_document' document.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<p><a href="{% url 'upload_document' %}">Upload New Document</a></p>

@@ -1,0 +1,12 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Загрузка документов в S3</h1>
+    <img src="{% static 'images/silly_cat.png' %}" alt="Welcome Image">
+    <p><a href="{% url 'document_list' %}">Список документов</a></p>
+</body>
+</html>

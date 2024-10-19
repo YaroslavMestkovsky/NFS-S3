@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from s3_upload import models
+
+admin.site.register(models.Document)
+admin.site.register(models.Person)
