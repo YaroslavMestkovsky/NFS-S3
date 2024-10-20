@@ -2,7 +2,7 @@ import boto3
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Document
 from .forms import DocumentForm
-from minio import Minio #todo не сильно нужно
+#from minio import Minio #todo не сильно нужно
 
 def document_list(request):
     documents = Document.objects.all()

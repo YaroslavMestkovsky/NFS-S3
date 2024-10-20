@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bash
 
 # Старт SSH-сервера
 /usr/sbin/sshd -D

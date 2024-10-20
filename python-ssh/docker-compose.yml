@@ -13,8 +13,7 @@ services:
       - "2222:22"
       - "8000:8000"
     tty: true
-    command: >
-      sh -c "python /app/S3App/manage.py migrate && python /app/S3App/manage.py runserver 0.0.0.0:8000"
+    command: "/bin/sh start.sh"
 
   minio:
     image: minio/minio:latest
