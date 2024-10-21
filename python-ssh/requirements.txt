@@ -1,7 +1,4 @@
-Django
-python-language-server[all]
-pylint-django
-pyls-black
-django-storages
-Pillow
-boto3
+Django==3.2.25
+django-storages==1.12.3
+Pillow==8.4.0
+boto3==1.23.10
