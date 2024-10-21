@@ -1,20 +1,21 @@
 services:
-  python-ssh:
-    build: .
-    container_name: python-ssh
+  # NFS-сервер
+  nfs-server:
+    build:
+      context: .
+      dockerfile: ./nfs-server/Dockerfile
+    container_name: nfs-server
+    privileged: true
+    ports:
+      - "2049:2049"
     volumes:
-      - ./app:/app
-      - ./requirements.txt:/requirements.txt
-      - ./start.sh:/start.sh
+      - nfs-data:/export/data
+      - ./nfs-server/run.sh:/run.sh
+    command: "/bin/sh run.sh"
     networks:
       python-ssh-net:
-        ipv4_address: 172.28.1.2
-    ports:
-      - "2222:22"
-      - "8000:8000"
-    tty: true
-    command: "/bin/sh start.sh"
 
+  # S3-сервер
   minio:
     image: minio/minio:latest
     container_name: minio
@@ -30,9 +31,33 @@ services:
     networks:
       python-ssh-net:
 
+  # Клиент
+  python-ssh:
+    build: .
+    container_name: python-ssh
+    privileged: true
+    depends_on:
+      - nfs-server
+    volumes:
+      - ./app:/app
+      - ./requirements.txt:/requirements.txt
+      - ./start.sh:/start.sh
+      - ./migrate_script.py:/migrate_script.py
+    networks:
+      python-ssh-net:
+        ipv4_address: 172.28.1.2
+    ports:
+      - "2222:22"
+      - "8000:8000"
+    tty: true
+    command: "/bin/sh start.sh"
+
 networks:
   python-ssh-net:
     driver: bridge
     ipam:
       config:
         - subnet: 172.28.0.0/16
+
+volumes:
+  nfs-data:

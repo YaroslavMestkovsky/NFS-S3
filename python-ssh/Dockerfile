@@ -5,8 +5,9 @@ RUN apt-get update
 
 # OpenSSH сервер
 RUN apt-get update && \
-    apt-get install -y openssh-server && \
-    mkdir /var/run/sshd
+    apt-get install -y openssh-server nfs-common && \
+    mkdir /var/run/sshd && \
+    mkdir -p /mnt/nfs-share
 
 # Пользователь и sudo
 RUN useradd -rm -d /home/python-root -s /bin/bash -g root -G sudo -u 1001 python-root && \
