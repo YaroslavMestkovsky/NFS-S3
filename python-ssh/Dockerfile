@@ -1,8 +1,5 @@
 FROM python:3.6.9
 
-# Устанавливаем зависимости системы
-RUN apt-get update
-
 # OpenSSH сервер
 RUN apt-get update && \
     apt-get install -y openssh-server nfs-common && \
