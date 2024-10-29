@@ -1,3 +1,4 @@
 /.idea
 /nfs/mnt/
 /python-ssh/data/
+/python-ssh/app/S3App/db.sqlite3
